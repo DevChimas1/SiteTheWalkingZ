@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte para o corpo */
+body {
+    font-family: 'Rock Salt', cursive; /* Fonte de grafite do Google Fonts */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Cabeçalho com ícone de navegação e título */
+header {
+    background-color: black;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10; /* Garante que o cabeçalho fique acima da imagem */
+}
+
+header h3 {
+    color: white;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+header h3 .red-z {
+    color: red;  /* A letra Z será vermelha */
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.img-nav img {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Configurações para o layout principal */
+main {
+    display: flex;
+    flex: 1;
+    background-image: url('img/fundo.png');
+    background-size: cover; /* Imagem de fundo cobre toda a tela */
+    background-position: center; /* Centra a imagem */
+    background-attachment: fixed; /* A imagem ficará fixa ao rolar a página */
+    height: 100vh; /* Garante que a imagem ocupe toda a altura da tela */
+    position: relative; /* Para que possamos colocar um filtro de desfoque por trás do texto */
+}
+
+/* Aplicando o filtro de desfoque na imagem de fundo */
+.main-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit; /* A mesma imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px); /* Desfoque aplicado */
+    z-index: 1; /* A imagem borrada ficará atrás do texto */
+}
+
+/* Parte esquerda (não será usada neste caso) */
+.main-left {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2; /* Garante que o texto fique acima do fundo */
+}
+
+/* Texto "Bem-vindo" na parte direita */
+.main-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-right: 30px;
+    text-align: right;
+    position: relative; /* Para garantir que o texto fique acima da imagem */
+    z-index: 2; /* Fica acima da imagem borrada */
+}
+
+.main-right h1 {
+    font-size: 48px; /* Tamanho grande para o título */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra no texto para destacar */
+}
+
+.main-right h1 .red-z {
+    color: red;  /* A letra Z estará em vermelho */
+}
+
+.red-z {
+    color: red;
+}
+
+.main-right p {
+    font-family: 'Permanent Marker', cursive;
+    color: black;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    main {
+        flex-direction: column;
+    }
+    header h3 {
+        font-size: 20px;
+    }
+    nav a {
+        font-size: 14px;
+    }
+}
