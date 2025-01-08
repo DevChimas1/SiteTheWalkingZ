@@ -11,6 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow-x: hidden; /* Evita rolagem horizontal em dispositivos menores */
 }
 
 /* Cabeçalho com ícone de navegação e título */
@@ -21,6 +22,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 10; /* Garante que o cabeçalho fique acima da imagem */
+    flex-wrap: wrap; /* Permite que os elementos se ajustem em telas menores */
 }
 
 header h3 {
@@ -36,6 +38,7 @@ header h3 .red-z {
 nav {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap; /* Permite que os links se ajustem em telas pequenas */
 }
 
 nav a {
@@ -61,6 +64,7 @@ main {
     background-attachment: fixed; /* A imagem ficará fixa ao rolar a página */
     height: 100vh; /* Garante que a imagem ocupe toda a altura da tela */
     position: relative; /* Para que possamos colocar um filtro de desfoque por trás do texto */
+    flex-wrap: wrap; /* Ajusta as seções em telas menores */
 }
 
 /* Aplicando o filtro de desfoque na imagem de fundo */
@@ -119,18 +123,53 @@ main {
     color: black;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    body {
+/* RESPONSIVIDADE */
+
+/* Para telas menores que 1024px */
+@media (max-width: 1024px) {
+    header {
         flex-direction: column;
-    }
-    main {
-        flex-direction: column;
+        align-items: flex-start;
     }
     header h3 {
         font-size: 20px;
+        margin-bottom: 10px;
+    }
+    nav {
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        text-align: center; /* Centraliza os textos */
+    }
+    .main-right {
+        padding: 10px;
+    }
+    .main-right h1 {
+        font-size: 36px;
     }
     nav a {
         font-size: 14px;
+        padding: 5px;
+    }
+}
+
+/* Para telas menores que 480px */
+@media (max-width: 480px) {
+    header h3 {
+        font-size: 18px;
+    }
+    .img-nav img {
+        width: 40px;
+    }
+    .main-right h1 {
+        font-size: 28px;
+    }
+    nav a {
+        font-size: 12px;
     }
 }
