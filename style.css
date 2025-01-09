@@ -1,175 +1,241 @@
+/* Estilos globais */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
 * {
     margin: 0;
     padding: 0;
-    border: 0;
     box-sizing: border-box;
+    font-family: "Rock Salt", sans-serif;
 }
 
-/* Fonte para o corpo */
 body {
-    font-family: 'Rock Salt', cursive; /* Fonte de grafite do Google Fonts */
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow-x: hidden; /* Evita rolagem horizontal em dispositivos menores */
+    min-height: 100vh;
+    background: url('img/fundo.png') no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
-/* Cabeçalho com ícone de navegação e título */
-header {
-    background-color: black;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10; /* Garante que o cabeçalho fique acima da imagem */
-    flex-wrap: wrap; /* Permite que os elementos se ajustem em telas menores */
-}
-
-header h3 {
-    color: white;
-    font-size: 24px;
-    margin-left: 10px;
-}
-
-header h3 .red-z {
-    color: red;  /* A letra Z será vermelha */
-}
-
-nav {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap; /* Permite que os links se ajustem em telas pequenas */
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 5px 10px;
-}
-
-.img-nav img {
-    width: 50px;
-    height: auto;
-    object-fit: contain;
-}
-
-/* Configurações para o layout principal */
-main {
-    display: flex;
-    flex: 1;
-    background-image: url('img/fundo.png');
-    background-size: cover; /* Imagem de fundo cobre toda a tela */
-    background-position: center; /* Centra a imagem */
-    background-attachment: fixed; /* A imagem ficará fixa ao rolar a página */
-    height: 100vh; /* Garante que a imagem ocupe toda a altura da tela */
-    position: relative; /* Para que possamos colocar um filtro de desfoque por trás do texto */
-    flex-wrap: wrap; /* Ajusta as seções em telas menores */
-}
-
-/* Aplicando o filtro de desfoque na imagem de fundo */
-.main-bg {
+body::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: inherit; /* A mesma imagem de fundo */
-    background-size: cover;
-    background-position: center;
-    filter: blur(6px); /* Desfoque aplicado */
-    z-index: 1; /* A imagem borrada ficará atrás do texto */
-}
-
-/* Parte esquerda (não será usada neste caso) */
-.main-left {
-    flex: 1;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 2; /* Garante que o texto fique acima do fundo */
-}
-
-/* Texto "Bem-vindo" na parte direita */
-.main-right {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding-right: 30px;
-    text-align: right;
-    position: relative; /* Para garantir que o texto fique acima da imagem */
-    z-index: 2; /* Fica acima da imagem borrada */
-}
-
-.main-right h1 {
-    font-size: 48px; /* Tamanho grande para o título */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra no texto para destacar */
-}
-
-.main-right h1 .red-z {
-    color: red;  /* A letra Z estará em vermelho */
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(6px);
+    z-index: -1;
 }
 
 .red-z {
     color: red;
 }
 
-.main-right p {
-    font-family: 'Permanent Marker', cursive;
-    color: black;
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
 }
 
-/* RESPONSIVIDADE */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
 
-/* Para telas menores que 1024px */
-@media (max-width: 1024px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    transition: .5s;
+}
+
+.header:hover::after {
+    left: 100%;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a {
+    font-size: 1.15rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar a:hover {
+    color: #ff5656;
+    border-bottom: #ff5656 3px solid;
+    transition: border-color 0.5s ease;
+}
+
+#check {
+    display: none;
+}
+
+.icons {
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+/* Main */
+.home {
+    color: white;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    margin: 0;
+    font-size: 45px;
+    text-align: right;
+}
+
+.home p{
+    font-size: 25px;
+}
+
+/* Footer */
+.footer {
+    background-color: #222; /* Fundo mais escuro */
+    color: #fff; /* Texto branco */
+    text-align: center; /* Centraliza o conteúdo */
+    padding: 20px 0; /* Espaçamento interno */
+    position: fixed; /* Mantém o footer fixo */
+    bottom: 0;
+    width: 100%;
+    font-size: 14px; /* Ajuste do tamanho da fonte */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha sutil no topo */
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer .highlight {
+    color: #ff5656; /* Cor destacada */
+    font-weight: bold; /* Negrito nos nomes */
+}
+
+/* BREAKPOINTS */
+@media (max-width: 992px) {
+    .header {
+        padding: 1rem 5%;
     }
-    header h3 {
-        font-size: 20px;
-        margin-bottom: 10px;
+
+    .navbar a {
+        font-size: 1rem;
+        margin-left: 2rem;
     }
-    nav {
-        justify-content: center;
-        gap: 10px;
+
+    .home {
+        font-size: 35px;
     }
 }
 
 @media (max-width: 768px) {
-    main {
-        flex-direction: column;
-        text-align: center; /* Centraliza os textos */
+    .icons {
+        display: inline-flex;
     }
-    .main-right {
-        padding: 10px;
+
+    #check:checked~.icons #menu-icon {
+        display: none;
     }
-    .main-right h1 {
-        font-size: 36px;
+
+    .icons #close-icon {
+        display: none;
     }
-    nav a {
-        font-size: 14px;
-        padding: 5px;
+
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+        transition: .3s ease;
+    }
+
+    #check:checked~.navbar {
+        height: auto;
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 1rem;
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    .home {
+        font-size: 28px;
+        top: 40%;
+        right: 2%;
+    }
+
+    .footer {
+        font-size: 12px;
     }
 }
 
-/* Para telas menores que 480px */
 @media (max-width: 480px) {
-    header h3 {
-        font-size: 18px;
+    .header {
+        padding: 0.8rem 3%;
     }
-    .img-nav img {
-        width: 40px;
+
+    .logo {
+        font-size: 1.5rem;
     }
-    .main-right h1 {
-        font-size: 28px;
+
+    .navbar a {
+        font-size: 0.9rem;
     }
-    nav a {
-        font-size: 12px;
+
+    .home {
+        font-size: 24px;
+        text-align: center;
+        right: 50%;
+        transform: translate(50%, -50%);
+    }
+
+    .footer {
+        font-size: 10px;
+        padding: 15px 0;
     }
 }
